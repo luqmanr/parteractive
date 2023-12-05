@@ -1,0 +1,14 @@
+version: "3.3"
+services:
+  interactive-gui:
+    image: "python:3.8.9"
+    volumes:
+      - ${PWD}:/app
+    ports:
+      - 1883:1883
+      - 9001:9001
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128MB
