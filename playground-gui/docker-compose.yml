@@ -5,8 +5,7 @@ services:
     volumes:
       - ${PWD}:/app
     ports:
-      - 1883:1883
-      - 9001:9001
+      - 8501:8501
     deploy:
       resources:
         limits:

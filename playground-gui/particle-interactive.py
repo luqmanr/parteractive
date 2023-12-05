@@ -10,7 +10,7 @@ import config
 
 from bubbles.emitter import Emitter
 from bubbles.particle import Particle
-from bubbles.PARTICLE_EFFECT import ParticleEffect
+from bubbles.particle_effect import ParticleEffect
 from bubbles.renderers.image_effect_renderer import ImageEffectRenderer
 
 def ultrasonic_mode():
@@ -97,10 +97,10 @@ if __name__ == '__main__':
     PARTICLE_TYPE = "fireball"
     PARTICLE_POSITION = 0
     PARTICLE_COLOR = (255,255,255,255)
-    
+
     mqtt_host = config.MQTT_SERVER
     mqtt_port = config.MQTT_PORT
-    mqtt_client_id = config.MQTT_CLIENTID_PREFIX + str(uuid.uuid4()[:3])
+    mqtt_client_id = config.MQTT_CLIENTID_PREFIX + str(uuid.uuid4())[:3]
 
     client = paho.Client(mqtt_client_id)
     client.on_connect = on_connect
