@@ -1,0 +1,7 @@
+FROM python:3.8.9
+
+COPY requirements.txt /tmp/requirements.txt
+
+RUN apt update && apt install -y python3-pip
+
+RUN python3 -m pip install -r /tmp/requirements.txt

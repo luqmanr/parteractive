@@ -7,6 +7,10 @@ The boards & sensor I used writing this repository are:
 - ESP8266
 - HC-SR04 (Ultrasonic Sensor)
 
+# TODOs
+1. Create a demo website
+2. Record a demo video
+
 # Credits
 - My father, [Budi Rahardjo](https://www.youtube.com/@rahard) for providing the codebase for the arduino/esp8266 codes [BRiot-stuff](https://github.com/rahard/BRiot-stuff)
 - [Jay Newey](https://github.com/jaynewey) for the awesome particles template [bubbles](https://github.com/jaynewey/bubbles)
