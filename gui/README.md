@@ -1,5 +1,8 @@
 # Running
-streamlit run particle-interactive.py --server.port 8501
+```
+docker-compose up
+```
+# this runs: streamlit run particle-interactive.py --server.port 8501
 
 # TODOs:
 1. Make the streamlit gui be able to change:
