@@ -16,4 +16,4 @@ services:
           memory: 128MB
     working_dir: /app
     # entrypoint: "streamlit run particles-client.py"
-    entrypoint: "streamlit run particle-interactive.py"
+    entrypoint: "streamlit run particle-interactive.py --server.port 8501"
