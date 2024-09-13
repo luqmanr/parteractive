@@ -1,7 +1,10 @@
 version: "3.3"
 services:
   interactive-gui:
-    image: "python:3.8.9"
+    image: "python:3.9.17"
+    build:
+      context: ./
+      dockerfile: ./Dockerfile
     volumes:
       - ${PWD}:/app
     ports:
@@ -11,3 +14,6 @@ services:
         limits:
           cpus: '0.2'
           memory: 128MB
+    working_dir: /app
+    # entrypoint: "streamlit run particles-client.py"
+    entrypoint: "streamlit run particle-interactive.py"
