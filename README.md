@@ -10,6 +10,39 @@ The boards & sensor I used writing this repository are:
 # TODOs
 1. Create a demo website
 2. Record a demo video
+3. setup NGINX with TLS for MQTTS
+```
+stream {
+
+    upstream broker {
+
+        server 10.1.0.3:1883 fail_timeout=1s max_fails=1;
+        server 10.1.0.5:1883 fail_timeout=1s max_fails=1;
+
+
+    }
+
+    server {
+
+#       access_log /var/log/nginx/access.log;
+#        error_log /var/log/nginx/error.log;
+ssl_certificate /etc/nginx/ssl/domain/server.crt;
+    ssl_certificate_key /etc/nginx/ssl/domain/server.key;
+
+    ssl_protocols TLSv1.2;
+
+
+        listen 1883;
+        listen domain.com:8883 ssl;
+
+        proxy_pass broker;
+
+        proxy_connect_timeout 1s;
+    }
+
+}
+```
+
 
 # Credits
 - My father, [Budi Rahardjo](https://www.youtube.com/@rahard) for providing the codebase for the arduino/esp8266 codes [BRiot-stuff](https://github.com/rahard/BRiot-stuff)
