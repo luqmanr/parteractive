@@ -1,6 +1,6 @@
 version: "3.3"
 services:
-  gui:
+  interactive-gui:
     image: "python:3.9.17"
     build:
       context: ./gui
@@ -11,14 +11,31 @@ services:
       - ${PWD}/gui:/app
     ports:
       - 8501:8501
-    # deploy:
-    #   resources:
-    #     limits:
-    #       cpus: '0.2'
-    #       memory: 128MB
+    deploy:
+      resources:
+        limits:
+          cpus: '0.2'
+          memory: 128MB
     working_dir: /app
     # entrypoint: "streamlit run particles-client.py"
-    entrypoint: "streamlit run particle-interactive.py --server.port 8501"
+    entrypoint: "streamlit run particle-client.py --server.port 8501"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
+  mqtt_client:
+    image: "python:3.9.17"
+    build:
+      context: ./gui
+      dockerfile: ./Dockerfile
+    volumes:
+      - /home:/home
+      - /mnt:/mnt
+      - ${PWD}/gui:/app
+    working_dir: /app
+    entrypoint: "python3 mqtt-subscriber.py"
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
+
   mqtt_server:
     image: "eclipse-mosquitto:latest"
     restart: unless-stopped
@@ -31,6 +48,8 @@ services:
     ports:
       - 1883:1883
       - 9001:9001
+    extra_hosts:
+      - "host.docker.internal:host-gateway"
     deploy:
       resources:
         limits:

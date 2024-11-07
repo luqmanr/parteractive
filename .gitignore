@@ -10,3 +10,5 @@ log/
 __pycache__/
 
 Config.h
+**.htpasswd**
+mosquitto/data
