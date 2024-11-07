@@ -18,7 +18,11 @@ def on_message(client, userdata, msg):
         f.close()
     elif msg.topic == 'position':
         f = open('position.txt', 'w')
-        f.write(msg.payload.decode())
+        try:
+            pos = int(msg.payload.decode())
+        except:
+            pos = 0
+        f.write(str(pos))
         f.close()
 
 mqttc = mqtt.Client("test_local")

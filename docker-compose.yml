@@ -1,7 +1,8 @@
 version: "3.3"
 services:
-  interactive-gui:
+  gui:
     image: "python:3.9.17"
+    restart: always
     build:
       context: ./gui
       dockerfile: ./Dockerfile
@@ -24,6 +25,7 @@ services:
 
   mqtt_client:
     image: "python:3.9.17"
+    restart: always
     build:
       context: ./gui
       dockerfile: ./Dockerfile
@@ -38,7 +40,7 @@ services:
 
   mqtt_server:
     image: "eclipse-mosquitto:latest"
-    restart: unless-stopped
+    restart: always
     volumes:
       - ./mosquitto/config:/mosquitto/config
       - ./mosquitto/data:/mosquitto/data

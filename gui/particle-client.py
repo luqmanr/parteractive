@@ -43,9 +43,12 @@ def on_message(client, userdata, msg):
     Path(IMG_DIR).mkdir(parents=True, exist_ok=True)
     # for i in range(60):
     while True:
-        f = open('position.txt', 'r')
-        position = int(f.read().replace('\n', ''))
-        f.close()
+        try:
+            f = open('position.txt', 'r')
+            position = int(f.read().replace('\n', ''))
+            f.close()
+        except:
+            position = 0
         particle_effect.update()
         # (width, height)
         img_size = (512, 128)
@@ -58,7 +61,7 @@ def on_message(client, userdata, msg):
             particle_effect.update()
 
         # update particle position
-        particle_effect.set_pos((position), img_size[1])
+        particle_effect.set_pos(position, img_size[1])
 
         # render particle
         r.render_effect(particle_effect,  image)
