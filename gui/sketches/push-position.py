@@ -13,7 +13,8 @@ if __name__ == '__main__':
     i = 0
     while True:
         if i > 512:
+            client.publish("particles", "fireball")
             i = 0
         client.publish("position", i)
         i += 1
-        time.sleep(0.1)
+        time.sleep(0.05)
