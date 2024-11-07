@@ -7,6 +7,8 @@ if __name__ == '__main__':
     client.username_pw_set("iotsbm", "belajariot")
     client.connect("host.docker.internal", 1883, 60)
 
+    client.publish("particles", "fireball")
+
     max = 512
     i = 0
     while True:
